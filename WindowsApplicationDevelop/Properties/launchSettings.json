@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WindowsApplicationDevelop (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WindowsApplicationDevelop (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

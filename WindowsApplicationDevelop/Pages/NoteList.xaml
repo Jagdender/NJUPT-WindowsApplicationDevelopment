@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="WindowsApplicationDevelop.Pages.NoteList"
+    xmlns:models="using:WindowsApplicationDevelop.Models"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsApplicationDevelop.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="NoteListTemplate" x:DataType="models:NoteItem">
+            <Grid>
+                <TextBlock Text="{x:Bind Title, Mode=OneTime}"/>
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="NoteListStyle" TargetType="ListView">
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+
+    <Grid Padding="50">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" Orientation="Vertical">
+            <Button Style="{StaticResource ActionButton}" Click="Add">Add</Button>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <ListView 
+                SelectionChanged="SelectNote"
+                Style="{StaticResource NoteListStyle}" 
+                ItemsSource="{x:Bind Notes, Mode=OneWay}" 
+                ItemTemplate="{StaticResource NoteListTemplate}">
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>
